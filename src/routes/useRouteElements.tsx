@@ -1,6 +1,6 @@
-import AboutMe from "@/pages/AboutMe";
-import HomePage from "@/pages/HomePage";
-import MyProjects from "@/pages/MyProjects";
+import AboutMe from "@/Pages/AboutMe";
+import HomePage from "@/Pages/HomePage";
+import MyProjects from "@/Pages/MyProjects";
 import { createBrowserRouter } from "react-router-dom";
 
 export const useRouteElements = () => {

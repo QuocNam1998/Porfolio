@@ -2,7 +2,7 @@ import darkMe from "@/assets/Image/me.png";
 import lightMe from "@/assets/Image/lightImage.png";
 import darkAvatar from "@/assets/Image/avatar.jpg";
 import lightAvatar from "@/assets/Image/lightAvater.png";
-import "@/pages/HomePage/HomePage.scss";
+import "@/Pages/HomePage/HomePage.scss";
 import TypeWriter from "@/components/TypeWriter";
 import { useTheme } from "@/store/ReactContext/ReactContext";
 export const AboutMe = () => {
