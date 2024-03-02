@@ -1,4 +1,3 @@
-import React from "react";
 import paretoEcom from "@/assets/Image/ecompareto.png";
 import cmsPareto from "@/assets/Image/cmsPareto.png";
 import Project from "./Project";
