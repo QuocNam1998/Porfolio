@@ -1,5 +1,6 @@
 import paretoEcom from "@/assets/Image/ecompareto.png";
 import cmsPareto from "@/assets/Image/cmsPareto.png";
+import logisticPareto from "@/assets/Image/logisticPareto.png";
 import Project from "./Project";
 export const MyProjects = () => {
   return (
@@ -8,6 +9,7 @@ export const MyProjects = () => {
         <h5 className="dark:text-purple-400 text-green-400 text-center text-4xl font-bold">
           My Projects
         </h5>
+        {/* ecommerce */}
         <div className="flex gap-4 flex-wrap md:flex-nowrap">
           <h5 className="dark:text-purple-400 text-green-400 text-center text-3xl font-bold b block md:hidden w-full">
             Pareto ecom
@@ -36,6 +38,7 @@ export const MyProjects = () => {
           </div>
           <Project link="http://ecom2.pareto.asia/" src={paretoEcom} />
         </div>
+        {/* cms */}
         <div className="flex gap-4 flex-wrap md:flex-nowrap">
           <h5 className="dark:text-purple-400 text-green-400 text-center text-3xl font-bold block md:hidden w-full">
             Pareto cms
@@ -61,6 +64,33 @@ export const MyProjects = () => {
             </p>
           </div>
           <Project link="http://admin1.pareto.asia" src={cmsPareto} />
+        </div>
+        {/* pdv  */}
+        <div className="flex gap-4 flex-wrap md:flex-nowrap">
+          <h5 className="dark:text-purple-400 text-green-400 text-center text-3xl font-bold block md:hidden w-full">
+            Pareto production
+          </h5>
+          <div className="basis-full md:basis-1/2 lg:basis-2/3">
+            <h5 className="dark:text-purple-400 text-green-400 text-center text-3xl font-bold hidden md:block">
+              Pareto production
+            </h5>
+            <p className="dark:text-purple-400 text-green-400 text-lg mt-8">
+              One tool used for management, Coordinator product in warehouse{" "}
+              <i>
+                utilizing React, Redux, Antd, Bootstrap frontend technologies.
+              </i>
+            </p>
+            <p className="dark:text-purple-400 text-green-400 text-lg mt-4">
+              You can experience it through an existing account below.
+            </p>
+            <p className="dark:text-purple-400 text-green-400 text-lg mt-4">
+              Username: PDV001
+            </p>
+            <p className="dark:text-purple-400 text-green-400 text-lg mt-2">
+              Password: 123456
+            </p>
+          </div>
+          <Project link="http://logictics1.pareto.asia" src={logisticPareto} />
         </div>
       </div>
     </div>

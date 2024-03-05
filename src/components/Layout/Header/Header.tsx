@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "@/components/Layout/Header/Header.scss";
 import { useTheme } from "@/store/ReactContext/ReactContext";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import myCV from "@/assets/DANGQUOCNAM-FE.pdf";
 export const Header = () => {
   const [activeLink, setActiveLink] = useState<string>("");
   const { setTheme } = useTheme();
@@ -18,7 +18,6 @@ export const Header = () => {
   useEffect(() => {
     setActiveLink(capitalizeFirstLetter(pathname.replace("/", "")));
   }, [pathname]);
-  console.log(">>>", capitalizeFirstLetter(pathname.replace("/", "")));
   function capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -59,25 +58,7 @@ export const Header = () => {
         </svg>
       ),
     },
-    // {
-    //   title: "About",
-    //   icon: (
-    //     <svg
-    //       xmlns="http://www.w3.org/2000/svg"
-    //       fill="none"
-    //       viewBox="0 0 24 24"
-    //       strokeWidth={1.5}
-    //       stroke="currentColor"
-    //       className={`w-6 h-6 m-0 md:mr-2 dark:text-white text-green-400 transition-all duration-0`}
-    //     >
-    //       <path
-    //         strokeLinecap="round"
-    //         strokeLinejoin="round"
-    //         d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-    //       />
-    //     </svg>
-    //   ),
-    // },
+
     {
       title: "Project",
       path: "/project",
@@ -117,25 +98,6 @@ export const Header = () => {
         </svg>
       ),
     },
-    // {
-    //   title: "Blog",
-    //   icon: (
-    //     <svg
-    //       xmlns="http://www.w3.org/2000/svg"
-    //       fill="none"
-    //       viewBox="0 0 24 24"
-    //       strokeWidth={1.5}
-    //       stroke="currentColor"
-    //       className={`w-6 h-6 mr-2 dark:text-white text-green-400 transition-all duration-0`}
-    //     >
-    //       <path
-    //         strokeLinecap="round"
-    //         strokeLinejoin="round"
-    //         d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
-    //       />
-    //     </svg>
-    //   ),
-    // },
   ];
   return (
     <div className="header z-50 px-2 py-3 top-0 left-0 right-0 ">
@@ -148,43 +110,57 @@ export const Header = () => {
           </li>
           <li className="w-full md:w-auto">
             <ul className="flex md:justify-normal justify-between">
-              {listPortfolio.map((item, idx) => (
-                <li
-                  onClick={() => {
-                    setActiveLink(item.title);
-                    if (item.path) {
-                      navigate(item.path);
-                    }
-                  }}
-                  key={idx}
-                  className=" m-0 md:ml-16  cursor-pointer group"
-                >
-                  <div className="flex">
-                    <button>{item.icon}</button>
-                    <span className="hidden md:block dark:text-white text-green-400 transition-all duration-200">
-                      {item.title}
-                    </span>
-                  </div>
-                  {/* <div
-                    className={`h-1 mt-1 group-hover:w-full ${
-                      activeLink !== ""
-                        ? item.title === activeLink && "w-full"
-                        : item.title === "Home" && "w-full"
-                    } w-0 dark:bg-purple-500 bg-green-400 rounded transition-all duration-200`}
-                  /> */}
-                  <div
-                    className={`h-1 mt-1 group-hover:w-full ${
-                      (activeLink === "" && item.title === "Home") ||
-                      activeLink === item.title
-                        ? "w-full"
-                        : ""
-                    } w-0 dark:bg-purple-500 bg-green-400 rounded transition-all duration-200`}
-                  />
-                </li>
-              ))}
+              {listPortfolio.map((item, idx) => {
+                const handleClick = () => {
+                  setActiveLink(item.title);
+                  if (item.path) {
+                    navigate(item.path);
+                  }
+                };
+
+                const isResume = item.title === "Resume";
+
+                return (
+                  <li
+                    key={idx}
+                    className="m-0 md:ml-16 cursor-pointer group"
+                    onClick={handleClick}
+                  >
+                    {isResume ? (
+                      <a
+                        href={myCV}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex"
+                      >
+                        <button>{item.icon}</button>
+                        <span className="hidden md:block dark:text-white text-green-400 transition-all duration-200">
+                          {item.title}
+                        </span>
+                      </a>
+                    ) : (
+                      <div className="flex" onClick={handleClick}>
+                        <button>{item.icon}</button>
+                        <span className="hidden md:block dark:text-white text-green-400 transition-all duration-200">
+                          {item.title}
+                        </span>
+                      </div>
+                    )}
+
+                    <div
+                      className={`h-1 mt-1 group-hover:w-full ${
+                        (activeLink === "" && item.title === "Home") ||
+                        activeLink === item.title
+                          ? "w-full"
+                          : ""
+                      } w-0 dark:bg-purple-500 bg-green-400 rounded transition-all duration-200`}
+                    />
+                  </li>
+                );
+              })}
               <li className="m-0 md:ml-16">
                 <button
-                  className={` dark:bg-white bg-green-400 rounded-xl flex relative p-[1px]`}
+                  className={`dark:bg-white bg-green-400 rounded-xl flex relative p-[1px]`}
                   onClick={(e) => {
                     e.preventDefault();
                     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
@@ -219,8 +195,8 @@ export const Header = () => {
                     />
                   </svg>
                   <div
-                    className={` dark:bg-purple-400  bg-white dark:left-[34px]
-                   rounded-full h-full w-6 transition-all duration-200 left-0 top-0 absolute `}
+                    className={`dark:bg-purple-400 bg-white dark:left-[34px]
+                   rounded-full h-full w-6 transition-all duration-200 left-0 top-0 absolute`}
                   />
                 </button>
               </li>

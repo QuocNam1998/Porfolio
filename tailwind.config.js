@@ -6,7 +6,9 @@ export default {
     extend: {
       dropShadow: {
         green: "0 0 20px rgb(74, 222, 128)",
+        "green-sm": "0 0 5px rgb(74, 222, 128)",
         purple: "0 0 20px rgb(135 32 158)",
+        "purple-sm": "0 0 20px rgb(135 32 158)",
       },
     },
     container: {

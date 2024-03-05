@@ -5,75 +5,80 @@ import lightAvatar from "@/assets/Image/lightAvater.png";
 import "@/Pages/HomePage/HomePage.scss";
 import TypeWriter from "@/components/TypeWriter";
 import { useTheme } from "@/store/ReactContext/ReactContext";
+import Input from "@/components/Input";
+import TextArea from "@/components/TextArea";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import emailjs from "@emailjs/browser";
+import { useRef, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const emailSchema = yup.object().shape({
+  name: yup.string().required("Let me know your name ^^"),
+  email: yup
+    .string()
+    .required("Give me an signal to back to you ~~")
+    .email("Your email is not true ^^"),
+  content: yup.string().required("What you want to say with me ^^"),
+});
+export interface emailForm {
+  name: string;
+  email: string;
+  content: string;
+}
 export const AboutMe = () => {
+  const [isSubmit, setSubmit] = useState<boolean>(false);
   const { theme } = useTheme();
-  const listContact = [
-    {
-      link: "https://github.com/QuocNam1998",
-      svg: (
-        <svg
-          stroke="currentColor"
-          fill="currentColor"
-          strokeWidth="0"
-          viewBox="0 0 1024 1024"
-          height="1em"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-5 h-5 dark:text-purple-600"
-        >
-          <path d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0 1 38.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z"></path>
-        </svg>
-      ),
-    },
-    {
-      svg: (
-        <svg
-          stroke="currentColor"
-          fill="currentColor"
-          strokeWidth="0"
-          viewBox="0 0 1024 1024"
-          height="1em"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-4 h-4 dark:text-purple-600"
-        >
-          <path d="M928 254.3c-30.6 13.2-63.9 22.7-98.2 26.4a170.1 170.1 0 0 0 75-94 336.64 336.64 0 0 1-108.2 41.2A170.1 170.1 0 0 0 672 174c-94.5 0-170.5 76.6-170.5 170.6 0 13.2 1.6 26.4 4.2 39.1-141.5-7.4-267.7-75-351.6-178.5a169.32 169.32 0 0 0-23.2 86.1c0 59.2 30.1 111.4 76 142.1a172 172 0 0 1-77.1-21.7v2.1c0 82.9 58.6 151.6 136.7 167.4a180.6 180.6 0 0 1-44.9 5.8c-11.1 0-21.6-1.1-32.2-2.6C211 652 273.9 701.1 348.8 702.7c-58.6 45.9-132 72.9-211.7 72.9-14.3 0-27.5-.5-41.2-2.1C171.5 822 261.2 850 357.8 850 671.4 850 843 590.2 843 364.7c0-7.4 0-14.8-.5-22.2 33.2-24.3 62.3-54.4 85.5-88.2z"></path>
-        </svg>
-      ),
-    },
-    {
-      svg: (
-        <svg
-          stroke="currentColor"
-          fill="currentColor"
-          strokeWidth="0"
-          viewBox="0 0 448 512"
-          height="1em"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-4 h-4 dark:text-purple-600"
-        >
-          <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path>
-        </svg>
-      ),
-    },
-    {
-      svg: (
-        <svg
-          stroke="currentColor"
-          fill="currentColor"
-          strokeWidth="0"
-          viewBox="0 0 1024 1024"
-          height="1em"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-4 h-4 dark:text-purple-600"
-        >
-          <path d="M512 378.7c-73.4 0-133.3 59.9-133.3 133.3S438.6 645.3 512 645.3 645.3 585.4 645.3 512 585.4 378.7 512 378.7zM911.8 512c0-55.2.5-109.9-2.6-165-3.1-64-17.7-120.8-64.5-167.6-46.9-46.9-103.6-61.4-167.6-64.5-55.2-3.1-109.9-2.6-165-2.6-55.2 0-109.9-.5-165 2.6-64 3.1-120.8 17.7-167.6 64.5C132.6 226.3 118.1 283 115 347c-3.1 55.2-2.6 109.9-2.6 165s-.5 109.9 2.6 165c3.1 64 17.7 120.8 64.5 167.6 46.9 46.9 103.6 61.4 167.6 64.5 55.2 3.1 109.9 2.6 165 2.6 55.2 0 109.9.5 165-2.6 64-3.1 120.8-17.7 167.6-64.5 46.9-46.9 61.4-103.6 64.5-167.6 3.2-55.1 2.6-109.8 2.6-165zM512 717.1c-113.5 0-205.1-91.6-205.1-205.1S398.5 306.9 512 306.9 717.1 398.5 717.1 512 625.5 717.1 512 717.1zm213.5-370.7c-26.5 0-47.9-21.4-47.9-47.9s21.4-47.9 47.9-47.9 47.9 21.4 47.9 47.9a47.84 47.84 0 0 1-47.9 47.9z"></path>
-        </svg>
-      ),
-    },
-  ];
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<emailForm>({
+    resolver: yupResolver(emailSchema),
+  });
+  const form = useRef<any>(null);
+
+  const onSubmit = () => {
+    if (isSubmit) return;
+
+    setSubmit(true);
+    const templateParams = {
+      publicKey: "38zoDNIUkuk17T9WD",
+    };
+
+    const onSuccess = () => {
+      toast(<p style={{ fontSize: 16 }}>Thành công</p>, toastConfig);
+      setSubmit(false);
+    };
+
+    const onError = () => {
+      toast(<p style={{ fontSize: 16 }}>Thất bại</p>, toastConfig);
+      setSubmit(false);
+    };
+
+    emailjs
+      .sendForm(
+        "service_t0pyu7r",
+        "template_i1ryl6i",
+        form.current,
+        templateParams
+      )
+      .then(onSuccess)
+      .catch(onError);
+  };
+
+  const toastConfig = {
+    position: "top-right",
+    autoClose: 1500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    rtl: false,
+    pauseOnFocusLoss: true,
+    draggable: true,
+    pauseOnHover: true,
+    type: "success",
+  };
   return (
     <div className="container">
       <div className="grid grid-cols-12 gap-x-4 gap-y-16">
@@ -150,34 +155,83 @@ export const AboutMe = () => {
           </div>
           <div className="col-span-12">
             <p className="uppercase dark:text-white text-center w-full text-5xl mb-4">
-              find me on
+              contact
             </p>
             <p className="dark:text-white text-center w-full mb-6 text-lg">
-              Feel free to{" "}
-              <span className="dark:text-purple-400 text-green-400">
-                connect
-              </span>{" "}
-              with me
+              Get in{" "}
+              <span className="dark:text-purple-400 text-green-400">touch</span>{" "}
             </p>
-            <div className="flex items-center w-full justify-center">
-              {listContact.map((item, idx) => (
-                <a
-                  key={idx}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={item.link}
-                >
-                  <div
-                    className="w-10 h-10 cursor-pointer mr-4 rounded-full bg-white flex items-center justify-center 
-                   dark:hover:border-[#87209e]  hover:drop-shadow-green dark:hover:drop-shadow-purple
-                   hover:border-green-400 border-[2px] dark:border-black border-white transition-all duration-200
-                   text-green-400 dark:text-[#87209e]"
+            <p className="dark:text-white text-left  w-full mb-2 text-lg">
+              I'd love if you reached out to me. Even if it's just to say "Hey".
+              Don't be hesitate ! Drop me a line i'll get back to you.
+            </p>
+
+            <p className="dark:text-purple-400 text-green-400  justify-normal flex items-center mb-6 text-lg w-full">
+              <svg
+                className="w-5 h-5 dark:text-purple-600 mr-2"
+                viewBox="0 0 192 192"
+                xmlns="http://www.w3.org/2000/svg"
+                stroke="currentColor"
+                fill="currentColor"
+              >
+                <path
+                  strokeLinejoin="round"
+                  strokeWidth="0"
+                  d="M22 57.265V142c0 5.523 4.477 10 10 10h24V95.056l40 30.278 40-30.278V152h24c5.523 0 10-4.477 10-10V57.265c0-13.233-15.15-20.746-25.684-12.736L96 81.265 47.684 44.53C37.15 36.519 22 44.032 22 57.265Z"
+                />
+              </svg>{" "}
+              nam.quoc.dang.98@gmail.com
+            </p>
+            <p className="dark:text-purple-400 text-green-400  justify-normal  flex items-center mb-6 text-lg w-full">
+              Write me a MESSAGE !
+            </p>
+            <form ref={form} onSubmit={handleSubmit(onSubmit)}>
+              <div className="w-full md:w-2/4  mb-4">
+                <Input label="Your Name" name="name" register={register} />
+                <span className="text-red-400 text-xs ">
+                  {errors.name?.message}
+                </span>
+              </div>
+              <div className="w-full md:w-2/4 mb-4">
+                <Input label="Your Email" name="email" register={register} />
+                <span className="text-red-400 text-xs ">
+                  {errors.email?.message}
+                </span>
+              </div>
+              <div className="w-full md:w-2/4 mb-4">
+                <TextArea label="Message" register={register} name="content" />
+                <span className="text-red-400 text-xs ">
+                  {errors.content?.message}
+                </span>
+              </div>
+              <button
+                className={`${
+                  isSubmit && "opacity-50 cursor-not-allowed"
+                } p-2 uppercase w-full md:w-2/4 dark:bg-purple-400 bg-green-400 text-white rounded flex justify-center items-center`}
+              >
+                Send
+                {isSubmit && (
+                  <svg
+                    aria-hidden="true"
+                    className="w-8 h-8 text-green-400 animate-spin dark:text-purple-400 ml-4 fill-white"
+                    viewBox="0 0 100 101"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    {item.svg}
-                  </div>
-                </a>
-              ))}
-            </div>
+                    <path
+                      d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                      fill="currentFill"
+                    />
+                  </svg>
+                )}
+              </button>
+
+              <ToastContainer />
+            </form>
           </div>
         </div>
 

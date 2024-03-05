@@ -10,7 +10,7 @@ export const TypeWriter = ({ strings }: typeWriterProps) => {
   const [intervalTime, setIntervalTime] = useState(
     Math.floor(Math.random() * 201)
   );
-  // made by ChatGPT
+
   useEffect(() => {
     const updateText = () => {
       if (direction === "forward") {
