@@ -68,7 +68,7 @@ export const AboutMe = () => {
       .catch(onError);
   };
 
-  const toastConfig: ToastOptions<unknown> = {
+  const toastConfig: ToastOptions = {
     position: "top-right",
     autoClose: 1500,
     hideProgressBar: false,
