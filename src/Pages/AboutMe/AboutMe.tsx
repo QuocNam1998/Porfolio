@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import emailjs from "@emailjs/browser";
 import { useRef, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, ToastOptions, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const emailSchema = yup.object().shape({
   name: yup.string().required("Let me know your name ^^"),
@@ -68,7 +68,7 @@ export const AboutMe = () => {
       .catch(onError);
   };
 
-  const toastConfig = {
+  const toastConfig: ToastOptions<unknown> = {
     position: "top-right",
     autoClose: 1500,
     hideProgressBar: false,
