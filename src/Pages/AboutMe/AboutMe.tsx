@@ -186,7 +186,7 @@ export const AboutMe = () => {
               Write me a MESSAGE !
             </p>
             <form ref={form} onSubmit={handleSubmit(onSubmit)}>
-              <div className="w-full md:w-2/4  mb-4">
+              <div className="w-full md:w-1/3  mb-4">
                 <Input label="Your Name" name="name" register={register} />
                 <span className="text-red-400 text-xs ">
                   {errors.name?.message}
