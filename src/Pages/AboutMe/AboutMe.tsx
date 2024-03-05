@@ -192,13 +192,13 @@ export const AboutMe = () => {
                   {errors.name?.message}
                 </span>
               </div>
-              <div className="w-full md:w-2/4 mb-4">
+              <div className="w-full md:w-1/3 mb-4">
                 <Input label="Your Email" name="email" register={register} />
                 <span className="text-red-400 text-xs ">
                   {errors.email?.message}
                 </span>
               </div>
-              <div className="w-full md:w-2/4 mb-4">
+              <div className="w-full md:w-1/3 mb-4">
                 <TextArea label="Message" register={register} name="content" />
                 <span className="text-red-400 text-xs ">
                   {errors.content?.message}
@@ -207,7 +207,7 @@ export const AboutMe = () => {
               <button
                 className={`${
                   isSubmit && "opacity-50 cursor-not-allowed"
-                } p-2 uppercase w-full md:w-2/4 dark:bg-purple-400 bg-green-400 text-white rounded flex justify-center items-center`}
+                } p-2 uppercase w-full md:w-1/3 dark:bg-purple-400 bg-green-400 text-white rounded flex justify-center items-center`}
               >
                 Send
                 {isSubmit && (
