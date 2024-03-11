@@ -7,9 +7,7 @@ export const TypeWriter = ({ strings }: typeWriterProps) => {
   const [direction, setDirection] = useState("forward");
   const [text, setText] = useState("");
   const [isBlinking, setIsBlinking] = useState<boolean>(false);
-  const [intervalTime, setIntervalTime] = useState(
-    Math.floor(Math.random() * 201)
-  );
+  const [intervalTime, setIntervalTime] = useState(200);
 
   useEffect(() => {
     const updateText = () => {
@@ -21,7 +19,7 @@ export const TypeWriter = ({ strings }: typeWriterProps) => {
           } else {
             setTimeout(() => {
               setDirection("backward");
-              setIntervalTime(Math.floor(Math.random() * 201));
+              setIntervalTime(100);
             }, 1000);
           }
         }
@@ -30,7 +28,7 @@ export const TypeWriter = ({ strings }: typeWriterProps) => {
           setText((prev) => prev.slice(0, -1));
         } else {
           setDirection("forward");
-          setIntervalTime(Math.floor(Math.random() * 201));
+          setIntervalTime(200);
           setIdx((prevIdx) => (prevIdx + 1) % strings.length);
         }
       }

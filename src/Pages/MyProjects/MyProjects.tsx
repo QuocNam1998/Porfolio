@@ -19,9 +19,9 @@ export const MyProjects = () => {
               Pareto ecom
             </h5>
             <p className="dark:text-purple-400 text-green-400 text-lg mt-8">
-              A B2C and B2B e-commerce website,{" "}
+              One of the tool, a B2C and B2B e-commerce website,{" "}
               <i>
-                utilizing React, Redux, Mui, TailWindcss, and TypeScript
+                builded on React, Redux, Mui, TailWindcss, and TypeScript
                 frontend technologies.
               </i>
             </p>
@@ -48,14 +48,15 @@ export const MyProjects = () => {
               Pareto cms
             </h5>
             <p className="dark:text-purple-400 text-green-400 text-lg mt-8">
-              One tool used for management, coordination, and production,{" "}
+              One of the tool of pareto industry used for management,
+              coordination, and production,{" "}
               <i>
-                utilizing React, Redux, Antd, Bootstrap frontend technologies.
+                builded on React, Redux, Antd, Bootstrap frontend technologies.
               </i>
             </p>
-            <p className="dark:text-purple-400 text-green-400 text-lg mt-4">
+            {/* <p className="dark:text-purple-400 text-green-400 text-lg mt-4">
               You can experience it through an existing account below.
-            </p>
+            </p> */}
             <p className="dark:text-purple-400 text-green-400 text-lg mt-4">
               Username: admin001
             </p>
@@ -75,14 +76,15 @@ export const MyProjects = () => {
               Pareto production
             </h5>
             <p className="dark:text-purple-400 text-green-400 text-lg mt-8">
-              One tool used for management, Coordinator product in warehouse{" "}
+              One of the tool used for management, Coordinator product in
+              warehouse{" "}
               <i>
-                utilizing React, Redux, Antd, Bootstrap frontend technologies.
+                builded on React, Redux, Antd, Bootstrap frontend technologies.
               </i>
             </p>
-            <p className="dark:text-purple-400 text-green-400 text-lg mt-4">
+            {/* <p className="dark:text-purple-400 text-green-400 text-lg mt-4">
               You can experience it through an existing account below.
-            </p>
+            </p> */}
             <p className="dark:text-purple-400 text-green-400 text-lg mt-4">
               Username: PDV001
             </p>
