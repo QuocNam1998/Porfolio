@@ -13,10 +13,10 @@ export const useRouteElements = () => {
           path: "",
           element: <AboutMe />,
         },
-        {
-          path: "/project",
-          element: <MyProjects />,
-        },
+        // {
+        //   path: "/project",
+        //   element: <MyProjects />,
+        // },
       ],
     },
   ]);
