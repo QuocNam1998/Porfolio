@@ -44,7 +44,7 @@ export const AboutMe = () => {
 
     setSubmit(true);
     const templateParams = {
-      publicKey: "38zoDNIUkuk17T9WD",
+      publicKey: "x1LAOZl_yRMOgkppX",
     };
 
     const onSuccess = () => {
@@ -53,7 +53,10 @@ export const AboutMe = () => {
     };
 
     const onError = () => {
-      toast(<p style={{ fontSize: 16 }}>Thất bại</p>, toastConfig);
+      toast(<p style={{ fontSize: 16 }}>Thất bại</p>, {
+        ...toastConfig,
+        type: "error",
+      });
       setSubmit(false);
     };
 
@@ -96,11 +99,13 @@ export const AboutMe = () => {
           </div>
           <div className="basis-full md:basis-1/2">
             {theme === "light" && <img className="w-[500px]" src={lightMe} />}
-            {theme === "dark" && <img className="w-[500px]" src={darkMe} />}
+            {theme === "dark" && (
+              <img className="w-[500px]" src={darkMe} loading="lazy" />
+            )}
           </div>
         </div>
         {/* Contaction */}
-        <div className="col-span-12 grid grid-cols-12 gap-x-8 gap-y-16 py-12 px-6">
+        <div className="col-span-12 grid grid-cols-12 gap-y-8 p-6 md:p-2 lg:p-0">
           <div className="col-span-12 md:col-span-7 ">
             <p className="dark:text-white text-5xl text-left md:text-center mb-8">
               LET ME{" "}
@@ -110,9 +115,11 @@ export const AboutMe = () => {
               MYSELF
             </p>
             <p className="dark:text-white mb-4 text-lg">
-              I am fluent in classics more than 2 years of experience in{" "}
+              I am a passionate and experienced web developer with over three
+              years of expertise, delivering fluent and impactful solutions for
+              the web, specializing in{" "}
               <span className="dark:text-purple-400 text-green-400 pl-[1px] italic ">
-                Javascript and Typescript
+                React and Angular
               </span>
               .
             </p>
@@ -127,16 +134,15 @@ export const AboutMe = () => {
               </span>
             </p>
             <p className="dark:text-white mb-4 text-lg">
-              Whenever possible, I also apply my passion for developing products
-              with{" "}
+              Whenever possible, I actively improve my{" "}
               <span className="dark:text-purple-400 text-green-400 mb-4 text-lg italic">
-                Node.js
-              </span>{" "}
-              and{" "}
-              <span className="dark:text-purple-400 text-green-400 mb-4 text-lg italic">
-                Modern Javascript Library and Frameworks like React.js and
-                Next.js
+                English skills
               </span>
+              , deepen my understanding of{" "}
+              <span className="dark:text-purple-400 text-green-400 mb-4 text-lg italic">
+                the core technologies I use
+              </span>
+              , and stay updated on the latest trends in front-end development.
             </p>
           </div>
           <div className="col-span-12 md:col-span-5 dark:text-white flex items-center justify-center">

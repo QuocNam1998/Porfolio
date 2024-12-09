@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "@/components/Layout/Header/Header.scss";
 import { useTheme } from "@/store/ReactContext/ReactContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import myCV from "@/assets/DANGQUOCNAM-FE.pdf";
+import myCV from "@/assets/DANGQUOCNAM-FE-DEVELOPER.pdf";
 export const Header = () => {
   const [activeLink, setActiveLink] = useState<string>("");
   const { setTheme } = useTheme();
@@ -59,26 +59,26 @@ export const Header = () => {
       ),
     },
 
-    {
-      title: "Project",
-      path: "/project",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className={`w-6 h-6 m-0 md:mr-2 dark:text-white text-green-400 transition-all duration-0`}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605"
-          />
-        </svg>
-      ),
-    },
+    // {
+    //   title: "Project",
+    //   path: "/project",
+    //   icon: (
+    //     <svg
+    //       xmlns="http://www.w3.org/2000/svg"
+    //       fill="none"
+    //       viewBox="0 0 24 24"
+    //       strokeWidth={1.5}
+    //       stroke="currentColor"
+    //       className={`w-6 h-6 m-0 md:mr-2 dark:text-white text-green-400 transition-all duration-0`}
+    //     >
+    //       <path
+    //         strokeLinecap="round"
+    //         strokeLinejoin="round"
+    //         d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605"
+    //       />
+    //     </svg>
+    //   ),
+    // },
     {
       title: "Resume",
       icon: (
@@ -99,54 +99,46 @@ export const Header = () => {
       ),
     },
   ];
+  const handleClick = (item: any) => {
+    const isResume = item.title === "Resume";
+    if (isResume) {
+      const link = document.createElement("a");
+      link.href = myCV; // Đường dẫn tới tài liệu
+      link.download = "DANGQUOCNAM-FE-DEVELOPER.pdf"; // Tên tài liệu khi tải xuống
+      document.body.appendChild(link); // Thêm vào DOM
+      link.click(); // Kích hoạt hành động tải xuống
+      document.body.removeChild(link); // Xóa thẻ sau khi click
+    }
+    setActiveLink(item.title);
+    if (item.path) {
+      navigate(item.path);
+    }
+  };
+
   return (
     <div className="header z-50 px-2 py-3 top-0 left-0 right-0 ">
       <nav className="container  ">
         <ul className="flex justify-between items-center">
           <li className="hidden md:block">
             <span className="w-10 h-10 dark:text-white text-green-400 transition-all duration-0 uppercase font-bold">
-              nam-por
+              DANGQUOCNAM
             </span>
           </li>
           <li className="w-full md:w-auto">
             <ul className="flex md:justify-normal justify-between">
               {listPortfolio.map((item, idx) => {
-                const handleClick = () => {
-                  setActiveLink(item.title);
-                  if (item.path) {
-                    navigate(item.path);
-                  }
-                };
-
-                const isResume = item.title === "Resume";
-
                 return (
                   <li
                     key={idx}
                     className="m-0 md:ml-16 cursor-pointer group"
-                    onClick={handleClick}
+                    onClick={() => handleClick(item)}
                   >
-                    {isResume ? (
-                      <a
-                        href={myCV}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex"
-                      >
-                        <button>{item.icon}</button>
-                        <span className="hidden md:block dark:text-white text-green-400 transition-all duration-200">
-                          {item.title}
-                        </span>
-                      </a>
-                    ) : (
-                      <div className="flex" onClick={handleClick}>
-                        <button>{item.icon}</button>
-                        <span className="hidden md:block dark:text-white text-green-400 transition-all duration-200">
-                          {item.title}
-                        </span>
-                      </div>
-                    )}
-
+                    <div className="flex">
+                      <button>{item.icon}</button>
+                      <span className="hidden md:block dark:text-white text-green-400 transition-all duration-200">
+                        {item.title}
+                      </span>
+                    </div>
                     <div
                       className={`h-1 mt-1 group-hover:w-full ${
                         (activeLink === "" && item.title === "Home") ||
