@@ -1,6 +1,5 @@
 import AboutMe from "@/Pages/AboutMe";
 import HomePage from "@/Pages/HomePage";
-import MyProjects from "@/Pages/MyProjects";
 import { createBrowserRouter } from "react-router-dom";
 
 export const useRouteElements = () => {
@@ -13,10 +12,6 @@ export const useRouteElements = () => {
           path: "",
           element: <AboutMe />,
         },
-        // {
-        //   path: "/project",
-        //   element: <MyProjects />,
-        // },
       ],
     },
   ]);
