@@ -14,6 +14,7 @@ import emailjs from "@emailjs/browser";
 import { useRef, useState } from "react";
 import { ToastContainer, ToastOptions, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ImageWithOnloadHandler from "@/components/ImageWithOnloadHandler";
 const emailSchema = yup.object().shape({
   name: yup.string().required("Let me know your name ^^"),
   email: yup
@@ -100,7 +101,11 @@ export const AboutMe = () => {
           <div className="basis-full md:basis-1/2">
             {theme === "light" && <img className="w-[500px]" src={lightMe} />}
             {theme === "dark" && (
-              <img className="w-[500px]" src={darkMe} loading="lazy" />
+              <ImageWithOnloadHandler
+                className="w-[500px]"
+                src={darkMe}
+                loading="lazy"
+              />
             )}
           </div>
         </div>
