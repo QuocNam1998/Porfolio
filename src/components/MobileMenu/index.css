@@ -1,0 +1,18 @@
+.mobile-menu {
+  background-color: #1b1a2ea9;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50px; /* Chiều rộng ban đầu */
+  height: 50px; /* Chiều cao ban đầu */
+  z-index: 9999;
+  transform: translate(-50%, -50%) scale(1); /* Đặt ở giữa và giữ kích thước ban đầu */
+  transform-origin: center center;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+}

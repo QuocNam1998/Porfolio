@@ -45,7 +45,7 @@ export const Footer = () => {
           fill="currentColor"
         >
           <path
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeWidth="0"
             d="M22 57.265V142c0 5.523 4.477 10 10 10h24V95.056l40 30.278 40-30.278V152h24c5.523 0 10-4.477 10-10V57.265c0-13.233-15.15-20.746-25.684-12.736L96 81.265 47.684 44.53C37.15 36.519 22 44.032 22 57.265Z"
           />
@@ -55,9 +55,9 @@ export const Footer = () => {
   ];
   return (
     <div className="flex items-center justify-between flex-wrap md:flex-nowrap dark:text-white text-green-400 px-4 bg-[#212529]">
-      <p className="my-2 text-base w-full md:w-auto text-center md:text-left  ">
-        Designed and Developed by Đặng Quốc Nam
-      </p>
+      <span className="my-2 text-purple-400 text-base w-full md:w-auto text-center md:text-left uppercase font-bold ">
+        porfolio
+      </span>
 
       <div className="flex my-4 w-full md:w-auto justify-center md:justify-normal">
         {listContact.map((item, idx) => (

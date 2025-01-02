@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 interface typeWriterProps {
   strings: string[];
 }
-export const TypeWriter = ({ strings }: typeWriterProps) => {
+export const TypeWriter = memo(({ strings }: typeWriterProps) => {
   const [idx, setIdx] = useState(0);
   const [direction, setDirection] = useState("forward");
   const [text, setText] = useState("");
   const [isBlinking, setIsBlinking] = useState<boolean>(false);
   const [intervalTime, setIntervalTime] = useState(200);
-
+  // console.log(">>>re-render");
   useEffect(() => {
     const updateText = () => {
       if (direction === "forward") {
@@ -47,9 +47,8 @@ export const TypeWriter = ({ strings }: typeWriterProps) => {
     return () => clearInterval(blinkInterval);
   }, []); // Empty dependency array to run effect only once
   return (
-    <div>
-      {" "}
-      <p className=" uppercase text-xl mt-8 mr-2">
+    <div className="min-h-[100px] text-base mt-4">
+      <p className="text-white ">
         {text}
         <span
           className={`${
@@ -61,4 +60,4 @@ export const TypeWriter = ({ strings }: typeWriterProps) => {
       </p>
     </div>
   );
-};
+});
