@@ -1,27 +1,24 @@
 import React, { useState } from "react";
-type Props = React.DetailedHTMLProps<
-  React.ImgHTMLAttributes<HTMLImageElement>,
-  HTMLImageElement
->;
-export const ImageWithOnloadHandler: React.FC<Props> = ({ ...rest }: Props) => {
+
+type Props = React.ImgHTMLAttributes<HTMLImageElement>;
+
+export const ImageWithOnloadHandler: React.FC<Props> = ({
+  className,
+  ...rest
+}) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // onLoad handler
-  const handleImageLoad = () => {
-    console.log("Image loaded successfully!");
-    setIsLoaded(true);
-  };
-
   return (
-    <div>
+    <>
+      {!isLoaded && <div className={`${className} h-[750px]`} />}
       <img
         {...rest}
-        onLoad={handleImageLoad}
+        className={`${className} ${isLoaded ? "opacity-100" : "opacity-0"}`}
+        onLoad={() => setIsLoaded(true)}
         style={{
-          opacity: isLoaded ? 1 : 0.5,
           transition: "opacity 0.3s ease-in-out",
         }}
       />
-    </div>
+    </>
   );
 };

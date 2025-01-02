@@ -1,6 +1,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 body {
   min-height: 100vh;
+  font-optical-sizing: auto;
+  font-style: normal;
+  scroll-behavior: smooth;
+}
+div {
+  width: 100%;
+}
+p {
+  color: #c3cad5;
+}
+h1 {
+  color: white;
+  @apply text-3xl font-bold uppercase md:text-left text-center;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+.about-me,
+.instroduction,
+.listed-skills,
+.contact-form,
+.experiences {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 1s, transform 0.6s;
+  transform: scale(0);
+}
+
+/* Active state when the element is in view */
+.about-me.active,
+.instroduction.active,
+.listed-skills.active,
+.contact-form.active,
+.experiences.active {
+  opacity: 1;
+  transform: scale(1);
+}
+/*  */
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  /* Các quy tắc CSS sẽ áp dụng cho màn hình có độ rộng từ 768px đến 1200px */
+
+  .about-me {
+    min-height: 30vh;
+  }
+  .listed-skills,
+  .contact-form,
+  .experiences {
+    min-height: 50vh;
+  }
 }

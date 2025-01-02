@@ -1,6 +1,10 @@
 import { UseFormRegister } from "react-hook-form";
 
-interface inputProps {
+interface inputProps
+  extends React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  > {
   label: string;
   name: string;
   register: UseFormRegister<any>;

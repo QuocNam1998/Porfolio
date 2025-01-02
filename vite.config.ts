@@ -1,10 +1,16 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import { defineConfig as defineViteConfig, mergeConfig } from "vite";
+import { defineConfig as defineVitestConfig } from "vitest/config";
+import react from "@vitejs/plugin-react";
 import path from "path";
-
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
+import compress from "vite-plugin-compression2";
+const viteConfig = defineViteConfig({
+  plugins: [
+    react(),
+    compress({
+      deleteOriginalAssets: false,
+      threshold: 10240, // Kích thước tệp tối thiểu để nén (ở đây là 10KB)
+    }),
+  ],
   server: {
     port: 3000,
   },
@@ -17,3 +23,11 @@ export default defineConfig({
     },
   },
 });
+const vitestConfig = defineVitestConfig({
+  test: {
+    globals: true, // Kích hoạt các hàm toàn cục như describe, it, test
+    environment: "jsdom", // Mô phỏng trình duyệt
+    setupFiles: "./vitest.setup.ts", // Tệp setup cho kiểm thử
+  },
+});
+export default mergeConfig(viteConfig, vitestConfig);

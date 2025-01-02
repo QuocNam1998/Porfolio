@@ -1,0 +1,3 @@
+.wrapper-portfolio {
+  @apply bg-white dark:bg-black relative;
+}
