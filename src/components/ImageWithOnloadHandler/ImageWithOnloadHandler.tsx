@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SkeletonLoader from "../SkeletonLoader";
 
 type Props = React.ImgHTMLAttributes<HTMLImageElement>;
 

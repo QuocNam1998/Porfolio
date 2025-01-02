@@ -22,10 +22,7 @@ export const MobileMenu = () => {
     if (isOpenMobileMenu) return;
     setIsRemoveMobileMenu(true);
   };
-  const onNavigate = (
-    event: React.MouseEvent<HTMLLIElement, MouseEvent>,
-    destination: string
-  ) => {
+  const onNavigate = (destination: string) => {
     // event.stopPropagation();
     if (destination !== "Resume") {
       navigate(`/${destination}`);
@@ -47,8 +44,8 @@ export const MobileMenu = () => {
       <ul
         className={`space-y-2 ${isOpenMobileMenu ? "visible" : "invisible"} `}
       >
-        <li onClick={(e) => onNavigate(e, "")}>Home</li>
-        <li onClick={(e) => onNavigate(e, "Resume")}>Resume</li>
+        <li onClick={() => onNavigate("")}>Home</li>
+        <li onClick={() => onNavigate("Resume")}>Resume</li>
       </ul>
     </div>
   ) : (

@@ -7,7 +7,6 @@ import { useHeaderItemHandler } from "@/utils/helpers";
 export const Header = () => {
   const { setIsOpenMobileMenu, setIsRemoveMobileMenu } =
     useMyContext("mobileMenuSettings");
-  const { setTheme } = useMyContext("themeSettings");
   const { setActiveHeaderItem, activeHeaderItem } =
     useMyContext("headerSettings");
   const handleClick = useHeaderItemHandler(myCV, setActiveHeaderItem);
@@ -17,10 +16,6 @@ export const Header = () => {
       window.removeEventListener("scroll", handleHeaderScroll);
     };
   }, []);
-
-  function capitalizeFirstLetter(string: string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
 
   /* Method that will fix header after a specific scrollable */
   const handleHeaderScroll = () => {

@@ -1,5 +1,4 @@
 import React, { useState, createContext, useContext } from "react";
-import { boolean } from "yup";
 
 interface ReactContextProps {
   children: React.ReactNode;
